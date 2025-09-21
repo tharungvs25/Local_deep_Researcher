@@ -1,0 +1,11 @@
+Sample Document for Testing File Upload
+
+This is a sample text file that demonstrates the file upload functionality of the Deep Researcher application. 
+
+Key Features Demonstrated:
+1. Text file upload to the data directory
+2. Automatic chunking of text content
+3. Integration with FAISS vector indexing
+4. Seamless search functionality with new content
+
+The file management system allows users to easily add new documents to their research database without restarting the application or losing existing data.

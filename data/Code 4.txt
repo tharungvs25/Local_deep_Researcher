@@ -1,0 +1,45 @@
+// Function to compute GCD using Euclidean Algorithm
+long gcd(long a, long b) {
+    while (b != 0) {
+        long temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}
+
+void setup() {
+    Serial.begin(9600); // Start serial communication at 9600 baud rate
+    Serial.println("Enter two floating-point numbers separated by space:");
+}
+
+void loop() {
+    if (Serial.available()) {  // Check if data is available in the serial buffer
+        float num1 = Serial.parseFloat();  // Read the first floating-point number
+        float num2 = Serial.parseFloat();  // Read the second floating-point number
+
+        // Assumption: Convert float to long by scaling it by 100,000
+        long scaledNum1 = num1 * 100000;
+        long scaledNum2 = num2 * 100000;
+
+        // Compute GCD using Euclidean Algorithm
+        long gcdValue = gcd(scaledNum1, scaledNum2);
+
+        // Convert back to float to retain precision
+        float gcdResult = (float)gcdValue / 100000.0;
+
+        // Print the result
+        Serial.print("GCD of ");
+        Serial.print(num1);
+        Serial.print(" and ");
+        Serial.print(num2);
+        Serial.print(" is: ");
+        Serial.println(gcdResult);
+
+        // Assumption: Flush the serial buffer to prevent unwanted extra inputs
+        while (Serial.available()) Serial.read(); 
+
+        // Prompt user for next input
+        Serial.println("Enter next two numbers:");
+    }
+}
